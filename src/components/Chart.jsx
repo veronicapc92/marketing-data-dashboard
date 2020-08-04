@@ -1,14 +1,23 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import Select from "./Select";
+import { useState } from "react";
 
 const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
+  const [dateRange, setDateRange] = useState(0);
   const labels = [];
   const data = [];
+  const index = dataPerDay.length - dateRange;
+  const dateRangeArray = !dateRange ? dataPerDay : dataPerDay.slice(index);
 
-  for (let element of dataPerDay) {
+  for (let element of dateRangeArray) {
     labels.push(formatDate(element));
     data.push(element.cost);
   }
+
+  const handleChange = (e) => {
+    setDateRange(e.target.value);
+  };
 
   const chartData = {
     labels,
@@ -22,39 +31,39 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
     ],
   };
 
-  return (
-    <Bar
-      data={chartData}
-      width={30}
-      height={10}
-      options={{
-        layout: {
-          padding: {
-            left: 300,
-            right: 300,
+  const chartOptions = {
+    layout: {
+      padding: {
+        left: 300,
+        right: 300,
+      },
+    },
+    scales: {
+      yAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
+          ticks: {
+            beginAtZero: true,
           },
         },
-        scales: {
-          yAxes: [
-            {
-              gridLines: {
-                display: false,
-              },
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
-          xAxes: [
-            {
-              gridLines: {
-                display: false,
-              },
-            },
-          ],
+      ],
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+          },
         },
-      }}
-    />
+      ],
+    },
+  };
+
+  return (
+    <React.Fragment>
+      <Bar data={chartData} width={30} height={10} options={chartOptions} />
+      <Select handleChange={handleChange} />
+    </React.Fragment>
   );
 };
 

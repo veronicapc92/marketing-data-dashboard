@@ -1,0 +1,24 @@
+.client-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+  color: #26608e;
+  padding: 8px;
+  transition: color 100ms ease-in-out, font-size 100ms ease-in-out;
+}
+
+.client:hover {
+  color: #f78d2d;
+}
+
+.client-logo {
+  width: 25px;
+  height: auto;
+}

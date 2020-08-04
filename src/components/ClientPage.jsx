@@ -3,6 +3,7 @@ import Table from "./Table";
 import axios from "axios";
 import Chart from "./Chart";
 import numeral from "numeral";
+import "./client-page.css";
 
 const ClientPage = (props) => {
   const clientId = props.match.params.id;
@@ -36,7 +37,11 @@ const ClientPage = (props) => {
   const currency = "£";
 
   return (
-    <React.Fragment>
+    <div>
+      <div className="client-name-container">
+        <img className="logo" src={clientData.logo} alt={clientData.name} />
+        <h2 className="client-name">{clientData.name}</h2>
+      </div>
       <Chart
         dataPerDay={dataPerDay}
         formatDate={formatDate}
@@ -49,7 +54,7 @@ const ClientPage = (props) => {
         formatNumber={formatNumber}
         currency={currency}
       />
-    </React.Fragment>
+    </div>
   );
 };
 

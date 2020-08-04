@@ -1,0 +1,17 @@
+.client-name-container {
+  width: 100%;
+  margin: 180px 0 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.client-name {
+  color: black;
+  font-size: 30px;
+  margin: 0 0 0 20px;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+}

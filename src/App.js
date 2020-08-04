@@ -3,6 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import Clients from "./components/Clients";
 import axios from "axios";
 import ClientPage from "./components/ClientPage";
+import Header from "./components/Header";
+import "./fonts/fonts.css";
+import "./App.css";
 
 function App() {
   const url = "http://localhost:3000/clients";
@@ -22,7 +25,8 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
+      <Header />
       <Switch>
         <Route path="/clients/:id" component={ClientPage} />
         <Route

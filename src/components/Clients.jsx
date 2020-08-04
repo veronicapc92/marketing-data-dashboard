@@ -1,13 +1,19 @@
 import React from "react";
 import Client from "./Client";
+import "./clients.css";
 
 const Clients = ({ clients }) => {
   return (
-    <React.Fragment>
-      {clients.map((client) => (
-        <Client key={client.id} client={client} />
-      ))}
-    </React.Fragment>
+    <div className="clients-container">
+      <h2>Clients</h2>
+      <ul className="clients-list">
+        {clients.map((client) => (
+          <li>
+            <Client key={client.id} client={client} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

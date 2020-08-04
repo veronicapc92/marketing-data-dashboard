@@ -2,6 +2,7 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import Select from "./Select";
 import { useState } from "react";
+import "./chart.css";
 
 const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
   const [dateRange, setDateRange] = useState(0);
@@ -23,9 +24,10 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
     labels,
     datasets: [
       {
-        label: "Cost",
+        label: `Cost`,
         data,
-        backgroundColor: "#26608E",
+        backgroundColor: "#0896C5",
+        hoverBackgroundColor: "#f78d2d",
         maxBarThickness: 18,
       },
     ],
@@ -34,8 +36,8 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
   const chartOptions = {
     layout: {
       padding: {
-        left: 300,
-        right: 300,
+        left: 200,
+        right: 200,
       },
     },
     scales: {
@@ -46,6 +48,7 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
           },
           ticks: {
             beginAtZero: true,
+            callback: (number) => `${currency}${formatNumber(number)}`,
           },
         },
       ],
@@ -60,10 +63,10 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
   };
 
   return (
-    <React.Fragment>
-      <Bar data={chartData} width={30} height={10} options={chartOptions} />
+    <div className="chart-container">
       <Select handleChange={handleChange} />
-    </React.Fragment>
+      <Bar data={chartData} width={30} height={10} options={chartOptions} />
+    </div>
   );
 };
 

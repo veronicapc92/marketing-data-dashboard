@@ -1,5 +1,6 @@
 import React from "react";
 import TableTotal from "./TableTotal";
+import "./table-body.css";
 
 const TableBody = ({
   dataPerDay,
@@ -15,7 +16,7 @@ const TableBody = ({
 
         return (
           <tr key={element.date}>
-            <th>{date}</th>
+            <th className="table-body">{date}</th>
             <td>{formatNumber(element.impressions)}</td>
             <td>{formatNumber(element.clicks)}</td>
             <td>{`${currency}${formatNumber(element.cost)}`}</td>

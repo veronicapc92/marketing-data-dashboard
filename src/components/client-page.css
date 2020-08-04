@@ -1,6 +1,6 @@
 .client-name-container {
   width: 100%;
-  margin: 180px 0 100px 0;
+  margin: 40px 0 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,4 +14,18 @@
 .logo {
   width: 60px;
   height: auto;
+}
+
+.link-to-homepage {
+  margin: 140px 0 0 40px;
+}
+
+.link-to-homepage a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-to-homepage a:hover {
+  color: #f78d2d;
 }

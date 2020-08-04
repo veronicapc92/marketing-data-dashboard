@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import Clients from "./components/Clients";
 import axios from "axios";
+import Clients from "./components/Clients";
 import ClientPage from "./components/ClientPage";
 import Header from "./components/Header";
 import "./fonts/fonts.css";

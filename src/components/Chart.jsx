@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import Select from "./Select";
-import { useState } from "react";
+import MetricSelector from "./MetricSelector";
 import "./chart.css";
 
-const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
+const Chart = ({
+  dataPerDay,
+  formatDate,
+  formatNumber,
+  currency,
+  propsArray,
+}) => {
   const [dateRange, setDateRange] = useState(0);
+  const [prop, setProp] = useState("impressions");
   const labels = [];
   const data = [];
   const index = dataPerDay.length - dateRange;
@@ -13,18 +20,18 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
 
   for (let element of dateRangeArray) {
     labels.push(formatDate(element));
-    data.push(element.cost);
+    data.push(element[prop]);
   }
 
-  const handleChange = (e) => {
-    setDateRange(e.target.value);
-  };
+  const handleChange = (e) => setDateRange(e.target.value);
+
+  const handleMetricSelect = (e) => setProp(e.target.value);
 
   const chartData = {
     labels,
     datasets: [
       {
-        label: `Cost`,
+        label: prop !== "cost" ? prop : `${prop} (${currency})`,
         data,
         backgroundColor: "#0896C5",
         hoverBackgroundColor: "#f78d2d",
@@ -48,7 +55,7 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
           },
           ticks: {
             beginAtZero: true,
-            callback: (number) => `${currency}${formatNumber(number)}`,
+            callback: (number) => `${formatNumber(number)}`,
           },
         },
       ],
@@ -65,6 +72,10 @@ const Chart = ({ dataPerDay, formatDate, formatNumber, currency }) => {
   return (
     <div className="chart-container">
       <Select handleChange={handleChange} />
+      <MetricSelector
+        onMetricSelect={handleMetricSelect}
+        propsArray={propsArray}
+      />
       <Bar data={chartData} width={30} height={10} options={chartOptions} />
     </div>
   );

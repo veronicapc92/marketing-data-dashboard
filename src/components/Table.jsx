@@ -1,26 +1,27 @@
 import React from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
+import "./table.css";
 
-const Table = ({ dataPerDay, formatDate, formatNumber, currency }) => {
-  const propsArray = [];
-
-  for (let prop in dataPerDay[0]) propsArray.push(prop);
-
+const Table = ({
+  dataPerDay,
+  formatDate,
+  formatNumber,
+  currency,
+  propsArray,
+}) => {
   return (
-    <React.Fragment>
-      <table>
-        <caption>Performance in the last 30 days</caption>
-        <TableHead propsArray={propsArray} />
-        <TableBody
-          dataPerDay={dataPerDay}
-          propsArray={propsArray}
-          formatDate={formatDate}
-          formatNumber={formatNumber}
-          currency={currency}
-        />
-      </table>
-    </React.Fragment>
+    <table>
+      <caption>Performance in the last 30 days</caption>
+      <TableHead propsArray={propsArray} />
+      <TableBody
+        dataPerDay={dataPerDay}
+        propsArray={propsArray}
+        formatDate={formatDate}
+        formatNumber={formatNumber}
+        currency={currency}
+      />
+    </table>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import numeral from "numeral";
+import "./table-total.css";
 
 const TableTotal = ({ dataPerDay, propsArray, currency }) => {
   const array = [...propsArray];
@@ -18,9 +19,11 @@ const TableTotal = ({ dataPerDay, propsArray, currency }) => {
 
   return (
     <tr>
-      <th>Total</th>
+      <th className="table-total">Total</th>
       {array.map((prop) => (
-        <td key={prop}>{generateTotal(prop)}</td>
+        <td className="table-total" key={prop}>
+          {generateTotal(prop)}
+        </td>
       ))}
     </tr>
   );

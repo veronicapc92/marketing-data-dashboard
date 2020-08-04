@@ -1,0 +1,33 @@
+td,
+th {
+  padding: 7px;
+  font-weight: 400;
+  border: 1px solid #26608e;
+}
+
+table {
+  margin: 90px auto;
+  font-family: "Mulish", sans-serif;
+  text-align: center;
+  border-spacing: 0;
+  cursor: default;
+}
+
+td:hover {
+  background-color: #f78d2d;
+  transition: background-color 200ms ease-in-out;
+}
+
+caption {
+  padding: 15px;
+  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+}
+
+thead {
+  font-family: "Raleway", sans-serif;
+}
+
+th {
+  color: white;
+}

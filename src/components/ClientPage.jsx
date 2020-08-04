@@ -4,6 +4,7 @@ import axios from "axios";
 import Chart from "./Chart";
 import numeral from "numeral";
 import "./client-page.css";
+import { Link } from "react-router-dom";
 
 const ClientPage = (props) => {
   const clientId = props.match.params.id;
@@ -32,12 +33,19 @@ const ClientPage = (props) => {
     return `${day}/${month}/${year}`;
   };
 
+  const propsArray = [];
+
+  for (let prop in dataPerDay[0]) propsArray.push(prop);
+
   const formatNumber = (number) => numeral(number).format("0,0");
 
   const currency = "£";
 
   return (
     <div>
+      <div className="link-to-homepage">
+        <Link to="/">{"< "}Back to homepage</Link>
+      </div>
       <div className="client-name-container">
         <img className="logo" src={clientData.logo} alt={clientData.name} />
         <h2 className="client-name">{clientData.name}</h2>
@@ -47,12 +55,14 @@ const ClientPage = (props) => {
         formatDate={formatDate}
         formatNumber={formatNumber}
         currency={currency}
+        propsArray={propsArray}
       />
       <Table
         dataPerDay={dataPerDay}
         formatDate={formatDate}
         formatNumber={formatNumber}
         currency={currency}
+        propsArray={propsArray}
       />
     </div>
   );

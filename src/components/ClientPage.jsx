@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import axios from "axios";
+import Chart from "./Chart";
+import numeral from "numeral";
 
 const ClientPage = (props) => {
   const clientId = props.match.params.id;
@@ -21,9 +23,32 @@ const ClientPage = (props) => {
     getClientData(clientId);
   }, []);
 
+  const formatDate = (element) => {
+    const dateObject = new Date(element.date);
+    const day = dateObject.getDate();
+    const month = dateObject.getMonth() + 1;
+    const year = dateObject.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  const formatNumber = (number) => numeral(number).format("0,0");
+
+  const currency = "£";
+
   return (
     <React.Fragment>
-      <Table dataPerDay={dataPerDay} />
+      <Chart
+        dataPerDay={dataPerDay}
+        formatDate={formatDate}
+        formatNumber={formatNumber}
+        currency={currency}
+      />
+      <Table
+        dataPerDay={dataPerDay}
+        formatDate={formatDate}
+        formatNumber={formatNumber}
+        currency={currency}
+      />
     </React.Fragment>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ClientDataContext } from "../../../contexts/clientDataContext";
-import Select from "../DateRangeDropdown/Select";
-import MetricSelector from "../MetricsDropdown/MetricSelector";
+import DateRangeDropdown from "../DateRangeDropdown/DateRangeDropdown";
+import MetricsDropdown from "../MetricsDropdown/MetricsDropdown";
 import BarComponent from "../BarComponent/BarComponent";
 import "./chart.css";
 
@@ -21,8 +21,10 @@ const Chart = () => {
 
   return (
     <div className="chart-container">
-      <Select handleChange={handleChange} />
-      <MetricSelector onMetricSelect={handleMetricSelect} />
+      <div className="dropdowns-container">
+        <DateRangeDropdown handleChange={handleChange} />
+        <MetricsDropdown onMetricSelect={handleMetricSelect} />
+      </div>
       <BarComponent dateRangeArray={dateRangeArray} prop={prop} />
     </div>
   );

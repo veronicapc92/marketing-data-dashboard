@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 import { formatDate, formatNumber } from "./../Helper";
 import { CURRENCY } from "../Constants";
-import { ClientDataContext } from "../../../contexts/clientDataContext";
 import TableTotal from "./TableTotal";
 import "./table-body.css";
 
-const TableBody = () => {
-  const { dataPerDay } = useContext(ClientDataContext);
+const TableBody = ({ sortedData }) => {
   return (
     <tbody>
-      {dataPerDay.map((element) => {
+      {sortedData.map((element) => {
         const date = formatDate(element);
 
         return (

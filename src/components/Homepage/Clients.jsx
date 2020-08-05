@@ -28,8 +28,8 @@ const Clients = () => {
       <ul className="clients-list">
         {/* Rendering the client list dynamically */}
         {clients.map((client) => (
-          <li>
-            <Client key={client.id} client={client} />
+          <li key={client.id}>
+            <Client client={client} />
           </li>
         ))}
       </ul>

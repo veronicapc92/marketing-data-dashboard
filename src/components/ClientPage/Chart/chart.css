@@ -1,3 +1,11 @@
 .chart-container {
   position: relative;
 }
+
+@media (max-width: 1350px) {
+  .dropdowns-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { formatDate, capitalizeFirstLetter, formatNumber } from "./../Helper";
 import { CURRENCY } from "../Constants";
 
 const BarComponent = ({ dateRangeArray, prop }) => {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const labels = [];
   const data = [];
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    handleResize();
+  }, []);
+
+  const resizePadding = () => {
+    if (windowSize.width && windowSize.width < 800) return 10;
+    return 150;
+  };
 
   // Dynamically creating the labels and data arrays
   // which we will use in chartData
@@ -33,8 +49,8 @@ const BarComponent = ({ dateRangeArray, prop }) => {
   const chartOptions = {
     layout: {
       padding: {
-        left: 200,
-        right: 200,
+        left: resizePadding(),
+        right: resizePadding(),
       },
     },
     scales: {
@@ -58,7 +74,9 @@ const BarComponent = ({ dateRangeArray, prop }) => {
       ],
     },
   };
-  return <Bar data={chartData} width={30} height={10} options={chartOptions} />;
+  return (
+    <Bar height={35} width={100} data={chartData} options={chartOptions} />
+  );
 };
 
 export default BarComponent;

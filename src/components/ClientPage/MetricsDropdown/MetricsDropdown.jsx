@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
+import { capitalizeFirstLetter } from "./../Helper";
 import { ClientDataContext } from "../../../contexts/clientDataContext";
-import "./metric-selector.css";
+import "./metrics-dropdown.css";
 
-const MetricSelector = ({ onMetricSelect }) => {
+const MetricsDropdown = ({ onMetricSelect }) => {
   const { propsArray } = useContext(ClientDataContext);
   const array = [...propsArray];
   array.shift();
   return (
     <select name="metrics" id="metrics" onChange={(e) => onMetricSelect(e)}>
       {array.map((prop) => (
-        <option value={prop}>{prop}</option>
+        <option key={prop} value={prop}>
+          {capitalizeFirstLetter(prop)}
+        </option>
       ))}
     </select>
   );
 };
 
-export default MetricSelector;
+export default MetricsDropdown;

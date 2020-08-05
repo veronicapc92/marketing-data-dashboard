@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ClientDataContext } from "../../../contexts/clientDataContext";
 import "./metric-selector.css";
 
-const MetricSelector = ({ onMetricSelect, propsArray }) => {
+const MetricSelector = ({ onMetricSelect }) => {
+  const { propsArray } = useContext(ClientDataContext);
   const array = [...propsArray];
   array.shift();
   return (

@@ -11,8 +11,8 @@
   padding: 0;
 }
 
-h2 {
+.clients-heading {
   margin: 140px 0 0 0;
-  color: #26608e;
+  color: black;
   cursor: default;
 }

@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { formatDate, formatNumber } from "./../Helper";
+import { CURRENCY } from "../Constants";
+import { ClientDataContext } from "../../../contexts/clientDataContext";
 import TableTotal from "./TableTotal";
 import "./table-body.css";
 
-const TableBody = ({
-  dataPerDay,
-  propsArray,
-  formatDate,
-  formatNumber,
-  currency,
-}) => {
+const TableBody = () => {
+  const { dataPerDay } = useContext(ClientDataContext);
   return (
     <tbody>
       {dataPerDay.map((element) => {
@@ -19,17 +17,13 @@ const TableBody = ({
             <th className="table-body">{date}</th>
             <td>{formatNumber(element.impressions)}</td>
             <td>{formatNumber(element.clicks)}</td>
-            <td>{`${currency}${formatNumber(element.cost)}`}</td>
+            <td>{`${CURRENCY}${formatNumber(element.cost)}`}</td>
             <td>{formatNumber(element.conversions)}</td>
           </tr>
         );
       })}
 
-      <TableTotal
-        dataPerDay={dataPerDay}
-        propsArray={propsArray}
-        currency={currency}
-      />
+      <TableTotal />
     </tbody>
   );
 };

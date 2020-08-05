@@ -3,8 +3,8 @@ import "./header.css";
 
 const Header = () => {
   return (
-    <header>
-      <h1>Performance Dashboard</h1>
+    <header className="header">
+      <h1 className="main-heading">Performance Dashboard</h1>
     </header>
   );
 };

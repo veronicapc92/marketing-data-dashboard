@@ -1,8 +1,11 @@
-import React from "react";
-import numeral from "numeral";
+import React, { useContext } from "react";
+import { formatNumber } from "./../Helper";
+import { CURRENCY } from "./../Constants";
+import { ClientDataContext } from "../../../contexts/clientDataContext";
 import "./table-total.css";
 
-const TableTotal = ({ dataPerDay, propsArray, currency }) => {
+const TableTotal = () => {
+  const { propsArray, dataPerDay } = useContext(ClientDataContext);
   const array = [...propsArray];
   array.shift();
 
@@ -11,9 +14,9 @@ const TableTotal = ({ dataPerDay, propsArray, currency }) => {
       (acc, currentValue) => acc + currentValue[prop],
       0
     );
-    total = numeral(total).format("0,0");
+    total = formatNumber(total);
 
-    if (prop === "cost") return `${currency}${total}`;
+    if (prop === "cost") return `${CURRENCY}${total}`;
     return total;
   };
 

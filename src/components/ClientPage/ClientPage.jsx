@@ -18,7 +18,7 @@ const ClientPage = (props) => {
   useEffect(() => {
     const getClientData = async (id) => {
       try {
-        const { data: clientData } = await axios.get(id);
+        const { data: clientData } = await axios.get("/" + id);
         setClientData(clientData);
         setDataPerDay(clientData.data);
       } catch (error) {

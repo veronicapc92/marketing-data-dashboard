@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { url } from "./../../config.json";
 import { ClientDataContext } from "../../contexts/clientDataContext";
 import Table from "./Table/Table";
 import Chart from "./Chart/Chart";
@@ -19,7 +18,7 @@ const ClientPage = (props) => {
   useEffect(() => {
     const getClientData = async (id) => {
       try {
-        const { data: clientData } = await axios.get(url + id);
+        const { data: clientData } = await axios.get(id);
         setClientData(clientData);
         setDataPerDay(clientData.data);
       } catch (error) {

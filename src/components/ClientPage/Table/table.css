@@ -1,7 +1,10 @@
+/* TABLE STYLES */
+
 td,
 th {
   padding: 7px;
-  width: 140px;
+  width: 7vw;
+  max-width: 140px;
   font-weight: 400;
   border: 1px solid #26608e;
 }
@@ -30,4 +33,25 @@ caption {
   td {
     padding: 0;
   }
+}
+
+/* TABLE HEAD STYLES */
+.table-head {
+  background-color: #0896c5;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  cursor: pointer;
+}
+
+/* TABLE BODY STYLES */
+
+.table-body {
+  background-color: rgba(247, 141, 45, 0.4);
+  color: black;
+}
+
+/* TABLE TOTAL STYLES */
+.table-total {
+  background-color: #26608e;
+  color: white;
 }

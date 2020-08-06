@@ -8,7 +8,7 @@ import "./chart.css";
 const Chart = () => {
   const { dataPerDay } = useContext(ClientDataContext);
   const [dateRange, setDateRange] = useState(0);
-  const [prop, setProp] = useState("impressions");
+  const [metric, setMetric] = useState("impressions");
 
   // Dynamically creating a dateRangeArray depending on the
   // dateRange selected by the user via the Select component
@@ -17,15 +17,15 @@ const Chart = () => {
 
   const handleChange = (e) => setDateRange(e.target.value);
 
-  const handleMetricSelect = (e) => setProp(e.target.value);
+  const handleMetricSelect = (e) => setMetric(e.target.value);
 
   return (
     <div className="chart-container">
       <div className="dropdowns-container">
-        <DateRangeDropdown handleChange={handleChange} />
         <MetricsDropdown onMetricSelect={handleMetricSelect} />
+        <DateRangeDropdown handleChange={handleChange} />
       </div>
-      <BarComponent dateRangeArray={dateRangeArray} prop={prop} />
+      <BarComponent dateRangeArray={dateRangeArray} metric={metric} />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { url } from "./../../config.json";
 import Client from "./Client";
 import "./clients.css";
 
 const Clients = () => {
-  const url = "http://localhost:3000/clients";
   const [clients, setClients] = useState([]);
 
   // Getting the client list from the API and storing it in the

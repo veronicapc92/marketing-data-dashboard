@@ -13,6 +13,6 @@
 @media (max-width: 1350px) {
   #date-range {
     position: static;
-    margin-right: 20px;
+    margin-left: 15px;
   }
 }

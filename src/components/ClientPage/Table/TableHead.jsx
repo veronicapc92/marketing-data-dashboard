@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
-import { capitalizeFirstLetter } from "../Helper";
+import { capitalizeFirstLetter } from "../../../Helper";
 import { ClientDataContext } from "../../../contexts/clientDataContext";
-import "./table-head.css";
+import "./table.css";
 
 const TableHead = ({ onSort, renderSortIcon }) => {
-  const { propsArrayExtended } = useContext(ClientDataContext);
+  const { keysArrayExtended } = useContext(ClientDataContext);
 
   return (
     <thead>
       <tr>
-        {propsArrayExtended.map((prop) => (
-          <th className="table-head" key={prop} onClick={() => onSort(prop)}>
-            {capitalizeFirstLetter(prop)} {renderSortIcon(prop)}
+        {keysArrayExtended.map((key) => (
+          <th className="table-head" key={key} onClick={() => onSort(key)}>
+            {capitalizeFirstLetter(key)} {renderSortIcon(key)}
           </th>
         ))}
       </tr>

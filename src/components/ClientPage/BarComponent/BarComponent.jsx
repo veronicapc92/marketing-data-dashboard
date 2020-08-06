@@ -1,34 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
-import { formatDate, capitalizeFirstLetter, formatNumber } from "./../Helper";
 import { CURRENCY } from "../Constants";
+import {
+  formatDate,
+  capitalizeFirstLetter,
+  formatNumber,
+} from "../../../Helper";
 import "./../../../fonts/fonts.css";
 
-const BarComponent = ({ dateRangeArray, prop }) => {
+const BarComponent = ({ dateRangeArray, metric }) => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const labels = [];
   const data = [];
 
+  // Checking the window width before first render
   useEffect(() => {
-    function handleResize() {
+    const handleResize = () =>
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }
+
     handleResize();
   }, []);
 
-  const resizePadding = () => {
-    if (windowSize.width && windowSize.width < 800) return 10;
-    return 150;
-  };
+  // Adjusts the chart's padding depending on the window width
+  const resizePadding = () =>
+    windowSize.width && windowSize.width < 850 ? 30 : 150;
 
   // Dynamically creating the labels and data arrays
   // which we will use in chartData
   for (let element of dateRangeArray) {
-    labels.push(formatDate(element));
-    data.push(element[prop]);
+    labels.push(formatDate(element.date));
+    data.push(element[metric]);
   }
 
   const chartData = {
@@ -36,9 +40,9 @@ const BarComponent = ({ dateRangeArray, prop }) => {
     datasets: [
       {
         label:
-          prop !== "cost"
-            ? capitalizeFirstLetter(prop)
-            : capitalizeFirstLetter(`${prop} (${CURRENCY})`),
+          metric !== "cost"
+            ? capitalizeFirstLetter(metric)
+            : capitalizeFirstLetter(`${metric} (${CURRENCY})`),
         data,
         backgroundColor: "#0896C5",
         hoverBackgroundColor: "#f78d2d",
@@ -55,8 +59,7 @@ const BarComponent = ({ dateRangeArray, prop }) => {
 
           if (label) label += ": ";
 
-          label += formatNumber(tooltipItem.yLabel);
-          return label;
+          return (label += formatNumber(tooltipItem.yLabel));
         },
       },
     },
@@ -74,7 +77,7 @@ const BarComponent = ({ dateRangeArray, prop }) => {
           },
           ticks: {
             beginAtZero: true,
-            callback: (number) => `${formatNumber(number)}`,
+            callback: (number) => formatNumber(number),
             fontFamily: "Mulish",
           },
         },

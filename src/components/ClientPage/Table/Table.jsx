@@ -1,38 +1,38 @@
 import React, { useContext, useState } from "react";
+import _ from "lodash";
 import { ClientDataContext } from "./../../../contexts/clientDataContext";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
-import _ from "lodash";
 import "./table.css";
 
 const Table = () => {
   const { dataPerDayExtended } = useContext(ClientDataContext);
   const [columnToSort, setColumnToSort] = useState({
-    path: "date",
+    metric: "date",
     order: "desc",
   });
 
-  const handleSort = (prop) =>
+  const handleSort = (metric) =>
     setColumnToSort((prevState) => {
       const columnToSort = { ...prevState };
-      if (columnToSort.path === prop)
+      if (columnToSort.metric === metric)
         columnToSort.order = columnToSort.order === "asc" ? "desc" : "asc";
       else {
-        columnToSort.path = prop;
+        columnToSort.metric = metric;
         columnToSort.order = "asc";
       }
       return columnToSort;
     });
 
   const renderSortIcon = (column) => {
-    if (column !== columnToSort.path) return;
+    if (column !== columnToSort.metric) return;
     if (columnToSort.order === "asc") return <i className="fas fa-sort-up"></i>;
     return <i className="fas fa-sort-down"></i>;
   };
 
   const sortedData = _.orderBy(
     dataPerDayExtended,
-    [columnToSort.path],
+    [columnToSort.metric],
     [columnToSort.order]
   );
 

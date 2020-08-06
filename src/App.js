@@ -3,9 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Clients from "./components/Homepage/Clients";
 import ClientPage from "./components/ClientPage/ClientPage";
+import ClientDataContextProvider from "./contexts/clientDataContext";
 import "./fonts/fonts.css";
 import "./App.css";
-import ClientDataContextProvider from "./contexts/clientDataContext";
 
 function App() {
   return (

@@ -1,0 +1,23 @@
+.footer {
+  margin-top: 100px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-top: 6px solid #f78d2d;
+  background-color: #26608e;
+  color: white;
+}
+
+.contact-paragraph {
+  margin: 0;
+}
+
+.contact-link {
+  font-weight: 500;
+  color: white;
+}
+
+.contact-link:hover {
+  color: #f78d2d;
+}

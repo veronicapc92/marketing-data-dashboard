@@ -5,12 +5,14 @@ import { ClientDataContext } from "../../../contexts/clientDataContext";
 import "./table-total.css";
 
 const TableTotal = () => {
-  const { propsArray, dataPerDay } = useContext(ClientDataContext);
-  const array = [...propsArray];
+  const { propsArrayExtended, dataPerDayExtended } = useContext(
+    ClientDataContext
+  );
+  const array = [...propsArrayExtended];
   array.shift();
 
   const generateTotal = (prop) => {
-    let total = dataPerDay.reduce(
+    let total = dataPerDayExtended.reduce(
       (acc, currentValue) => acc + currentValue[prop],
       0
     );

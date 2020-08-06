@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { formatDate, capitalizeFirstLetter, formatNumber } from "./../Helper";
 import { CURRENCY } from "../Constants";
+import "./../../../fonts/fonts.css";
 
 const BarComponent = ({ dateRangeArray, prop }) => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
@@ -47,6 +48,18 @@ const BarComponent = ({ dateRangeArray, prop }) => {
   };
 
   const chartOptions = {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          let label = data.datasets[tooltipItem.datasetIndex].label;
+
+          if (label) label += ": ";
+
+          label += formatNumber(tooltipItem.yLabel);
+          return label;
+        },
+      },
+    },
     layout: {
       padding: {
         left: resizePadding(),
@@ -62,6 +75,7 @@ const BarComponent = ({ dateRangeArray, prop }) => {
           ticks: {
             beginAtZero: true,
             callback: (number) => `${formatNumber(number)}`,
+            fontFamily: "Mulish",
           },
         },
       ],
@@ -69,6 +83,9 @@ const BarComponent = ({ dateRangeArray, prop }) => {
         {
           gridLines: {
             display: false,
+          },
+          ticks: {
+            fontFamily: "Mulish",
           },
         },
       ],

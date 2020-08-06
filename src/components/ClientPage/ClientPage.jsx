@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ClientDataContext } from "../../contexts/clientDataContext";
 import Table from "./Table/Table";
 import Chart from "./Chart/Chart";
+import Footer from "./Footer/Footer";
 import "./client-page.css";
 
 const ClientPage = (props) => {
@@ -32,7 +33,7 @@ const ClientPage = (props) => {
   return (
     <React.Fragment>
       <div className="link-to-homepage">
-        <Link to="/">{"< "}Back to homepage</Link>
+        <Link to="/">{"< "}Back to Homepage</Link>
       </div>
       <div className="client-name-container">
         <img className="logo" src={clientData.logo} alt={clientData.name} />
@@ -40,6 +41,7 @@ const ClientPage = (props) => {
       </div>
       <Chart />
       <Table />
+      <Footer />
     </React.Fragment>
   );
 };

@@ -10,3 +10,5 @@ export const capitalizeFirstLetter = (string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
 export const formatNumber = (number) => number.toLocaleString("en-GB");
+
+export const formatPercentage = (number) => (number * 100).toFixed(2) + "%";

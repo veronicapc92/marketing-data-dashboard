@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import http from "../../services/httpService";
 import Client from "./Client";
 import "./clients.css";
 
@@ -11,7 +11,7 @@ const Clients = () => {
   useEffect(() => {
     const getClients = async () => {
       try {
-        const { data: clients } = await axios.get("/");
+        const { data: clients } = await http.get("/");
         setClients(clients);
       } catch (error) {
         console.log("getClients error", error);
